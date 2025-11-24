@@ -23,4 +23,842 @@
             --text-color: #4a3b32;
             
             --font-title: 'Great Vibes', cursive;
-            --font-body: 'Open Sans', sans    
+            --font-body: 'Open Sans', sans-serif;
+            
+            --shadow: 0 8px 20px rgba(139, 69, 19, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        /* --- 2. RESET BÁSICO --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: var(--font-body); background-color: var(--bg-color); color: var(--text-color); line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- 3. HEADER E NAV --- */
+        header {
+            background-color: var(--card-bg);
+            padding: 1rem 5%;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-title);
+            font-size: 2.2rem;
+            color: var(--primary-color);
+        }
+
+        nav ul { display: flex; gap: 20px; }
+        nav a { font-weight: 700; color: var(--primary-color); transition: var(--transition); }
+        nav a:hover { color: var(--gold); }
+
+        /* Ícone do Carrinho no Header */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-left: 20px;
+            transition: var(--transition);
+        }
+        .cart-icon:hover { color: var(--accent-color); transform: scale(1.1); }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background-color: #ff4757;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            display: none; /* Escondido se 0 */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 768px) {
+            nav ul { display: none; } 
+            .logo { font-size: 1.8rem; }
+        }
+
+        /* --- 4. HERO SECTION --- */
+        .hero {
+            height: 85vh;
+            background: linear-gradient(rgba(255, 228, 225, 0.85), rgba(255, 228, 225, 0.6)), 
+                        url('https://images.unsplash.com/photo-1579372786545-d24232daf58c?q=80&w=1920'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--primary-color);
+            padding: 0 20px;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-family: var(--font-title);
+            font-size: 4.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 0px #fff;
+        }
+
+        .hero p { font-size: 1.3rem; font-weight: 600; margin-bottom: 30px; max-width: 700px; }
+
+        .btn-cta {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(139, 69, 19, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-cta:hover { background-color: var(--accent-color); transform: translateY(-3px); }
+
+        /* --- 5. GRID DE PRODUTOS --- */
+        section { padding: 60px 5%; }
+        
+        .category-title {
+            text-align: center;
+            color: var(--primary-color);
+            font-family: var(--font-title);
+            font-size: 3.5rem;
+            margin: 50px 0 30px;
+            text-shadow: 2px 2px 0px #fff;
+            scroll-margin-top: 100px;
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
+            padding-bottom: 25px;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover { transform: translateY(-8px); border-color: var(--gold); }
+
+        .card-img-container { height: 200px; overflow: hidden; background-color: #eee; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+        .card:hover img { transform: scale(1.1); }
+
+        .card h3 {
+            color: var(--primary-color);
+            margin: 15px 0 10px;
+            font-size: 1.4rem;
+            font-family: var(--font-title);
+        }
+
+        /* Seletor de Preços */
+        .price-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            padding: 0 10px;
+        }
+
+        .price-item {
+            background-color: #fdf3f0;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid #eec;
+            cursor: pointer;
+            transition: all 0.2s;
+            flex: 1;
+        }
+
+        .price-item:hover { background-color: #ecdcd5; }
+
+        /* Estado Ativo (Selecionado) */
+        .price-item.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--gold);
+        }
+        
+        .price-item.active .qtd-label, 
+        .price-item.active .price-value { color: white; }
+
+        .qtd-label { display: block; font-size: 0.8rem; color: #666; }
+        .price-value { display: block; font-weight: 700; font-size: 1.1rem; color: var(--accent-color); }
+
+        .btn-buy {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            padding: 10px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            margin: 0 auto;
+            width: 80%;
+        }
+
+        .btn-buy:hover { background-color: var(--primary-color); color: #fff; }
+
+        /* --- 6. CARRINHO MODAL --- */
+        .modal {
+            display: none; 
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg);
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            animation: slideDown 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            color: #aaa;
+            font-size: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .close-btn:hover { color: var(--primary-color); }
+
+        .modal-content h2 {
+            font-family: var(--font-title);
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--bg-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+            font-size: 2rem;
+        }
+
+        #cart-items {
+            max-height: 300px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 5px;
+        }
+
+        #cart-items::-webkit-scrollbar { width: 8px; }
+        #cart-items::-webkit-scrollbar-track { background: #f1f1f1; }
+        #cart-items::-webkit-scrollbar-thumb { background: var(--primary-color); border-radius: 10px; }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fffafa;
+            margin-bottom: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        .item-info strong { display: block; color: var(--text-color); }
+        .item-info small { color: #888; }
+        .item-price { font-weight: bold; color: var(--accent-color); margin-right: 15px; }
+
+        .item-remove { 
+            color: #ff4757; 
+            cursor: pointer; 
+            font-size: 1rem;
+            padding: 5px;
+            transition: 0.2s;
+        }
+        .item-remove:hover { transform: scale(1.2); }
+
+        #cart-total {
+            font-weight: 800;
+            font-size: 1.4rem;
+            text-align: right;
+            color: var(--primary-color);
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px dashed #ddd;
+        }
+
+        #btn-finish-order {
+            width: 100%;
+            margin-top: 25px;
+            padding: 15px;
+            background-color: #25d366;
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        #btn-finish-order:hover { background-color: #1ebd53; transform: scale(1.02); }
+        #btn-finish-order:disabled { background-color: #ccc; cursor: not-allowed; transform: none; }
+
+        .empty-cart-message { text-align: center; color: #777; padding: 30px; font-style: italic; }
+
+        /* --- 7. FOOTER --- */
+        footer {
+            background-color: var(--primary-color);
+            color: #fff;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+        }
+        
+        .social-links { margin-bottom: 20px; }
+        .social-links a { font-size: 2rem; margin: 0 15px; color: #fff; transition: 0.3s; }
+        .social-links a:hover { color: var(--gold); transform: translateY(-5px); }
+        
+        footer p { font-size: 1.1rem; opacity: 0.9; }
+        footer strong { color: var(--gold); }
+
+        /* --- 8. WHATSAPP FLUTUANTE --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px; height: 60px;
+            bottom: 30px; right: 30px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 5px 15px rgba(0,0,0,0.3);
+            z-index: 1500;
+            display: flex; align-items: center; justify-content: center;
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1); background-color: #1ebd53; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">Brigadeiros da Suh</div>
+        <nav>
+            <ul>
+                <li><a href="#tradicionais">Tradicionais</a></li>
+                <li><a href="#gourmet">Gourmet</a></li>
+                <li><a href="#novos">Novos Sabores</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+        </nav>
+        <div class="cart-icon" onclick="openCartModal()">
+             <i class="fas fa-shopping-cart"></i>
+             <span class="cart-count" id="cart-count">0</span>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Faça já a sua encomenda!</h1>
+        <p>Docinhos tradicionais e gourmet feitos com amor para sua festa.</p>
+        <button class="btn-cta" onclick="openCartModal()">
+            <i class="fas fa-shopping-basket"></i> Montar Pedido
+        </button>
+    </section>
+
+    <h2 id="tradicionais" class="category-title">Docinhos Tradicionais</h2>
+    <section>
+        <div class="catalog-grid">
+            <div class="card" data-product-name="Brigadeiro Tradicional">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1627993079942-0c9f80789728?q=80&w=600" alt="Brigadeiro">
+                </div>
+                <h3>Brigadeiro</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="75.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 75</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="130.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 130</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Beijinho de Coco">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1595254562906-64f8b4271456?q=80&w=600" alt="Beijinho">
+                </div>
+                <h3>Beijinho de Coco</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="75.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 75</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="130.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 130</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Napolitano">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1588166524941-3bf61a9c41db?q=80&w=600" alt="Napolitano">
+                </div>
+                <h3>Napolitano</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="85.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 85</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="150.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 150</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Casadinho">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1579372783946-446d0a7a28eb?q=80&w=600" alt="Casadinho">
+                </div>
+                <h3>Casadinho</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="80.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 80</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="140.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 140</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+            
+            <div class="card" data-product-name="Docinhos Coloridos">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1549488344-c7052f448c9d?q=80&w=600" alt="Coloridos">
+                </div>
+                <h3>Coloridos</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="80.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 80</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="140.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 140</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+        </div>
+    </section>
+
+    <h2 id="gourmet" class="category-title">Docinhos Gourmet</h2>
+    <section>
+        <div class="catalog-grid">
+            <div class="card" data-product-name="Brigadeiro M&M">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1582239401562-b369c730ce2c?q=80&w=600" alt="M&M">
+                </div>
+                <h3>Brigadeiro M&M</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="190.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 190</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Chokito">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1579372785854-90f746d60848?q=80&w=600" alt="Chokito">
+                </div>
+                <h3>Chokito</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="80.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 80</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="180.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 180</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Camafeu de Nozes">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1599940829427-4b42c8457525?q=80&w=600" alt="Nozes">
+                </div>
+                <h3>Camafeu de Nozes</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="110.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 110</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="190.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 190</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Ninho c/ Nutella">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1624373327791-934188076e2e?q=80&w=600" alt="Ninho Nutella">
+                </div>
+                <h3>Ninho c/ Nutella</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="190.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 190</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+            
+             <div class="card" data-product-name="Churros/Pudim">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1630338998188-11260e884556?q=80&w=600" alt="Churros">
+                </div>
+                <h3>Churros ou Pudim</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="190.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 190</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+        </div>
+    </section>
+
+    <h2 id="novos" class="category-title">Novos Sabores</h2>
+    <section>
+        <div class="catalog-grid">
+            <div class="card" data-product-name="Açaí">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1599639667919-e2e4944b6018?q=80&w=600" alt="Açaí">
+                </div>
+                <h3>Açaí</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="180.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 180</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Romeu e Julieta">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1588557133316-a1d1d95a6871?q=80&w=600" alt="Romeu e Julieta">
+                </div>
+                <h3>Romeu e Julieta</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="180.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 180</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Maracujá">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1589942476532-f2cb2236fc01?q=80&w=600" alt="Maracujá">
+                </div>
+                <h3>Maracujá</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="180.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 180</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Morango">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1464305795204-6f5bbfc7fb81?q=80&w=600" alt="Morango">
+                </div>
+                <h3>Morango</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="180.00">
+                        <span class="price-value">R$ 180</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+             <div class="card" data-product-name="Café">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600" alt="Café">
+                </div>
+                <h3>Café</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="90.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 90</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="150.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 150</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+
+            <div class="card" data-product-name="Caipirinha (Álcool)">
+                <div class="card-img-container">
+                    <img src="https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?q=80&w=600" alt="Caipirinha">
+                </div>
+                <h3>Caipirinha (Álcool)</h3>
+                <div class="price-box">
+                    <div class="price-item" data-qtd="50" data-price="100.00">
+                        <span class="qtd-label">50 un.</span><span class="price-value">R$ 100</span>
+                    </div>
+                    <div class="price-item" data-qtd="100" data-price="180.00">
+                        <span class="qtd-label">100 un.</span><span class="price-value">R$ 180</span>
+                    </div>
+                </div>
+                <button class="btn-buy" onclick="addToCart(this)">Adicionar</button>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contato">
+        <div class="social-links">
+            <a href="https://instagram.com/suelenmoreiraluz" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+            <a href="#"><i class="fas fa-envelope"></i></a>
+        </div>
+        <p>Encomendas: <strong>(51) 99846-1755</strong></p>
+        <p>@suelenmoreiraluz</p>
+        <br>
+        <small>&copy; 2024 Brigadeiros Caseiros da Suh. Todos os direitos reservados.</small>
+    </footer>
+
+    <a href="#" onclick="openCartModal()" class="whatsapp-float">
+        <i class="fas fa-shopping-cart"></i>
+    </a>
+
+    <div id="cartModal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCartModal()">&times;</span>
+            <h2><i class="fas fa-receipt"></i> Seu Pedido</h2>
+            
+            <div id="cart-items">
+                </div>
+            
+            <div id="cart-total">
+                Total: R$ 0,00
+            </div>
+
+            <button id="btn-finish-order" onclick="finishOrder()" disabled>
+                <i class="fab fa-whatsapp"></i> Enviar Pedido por WhatsApp
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const cart = [];
+        const telefoneWhatsApp = "5551998461755";
+
+        /* --- FUNÇÕES DO MODAL --- */
+        function openCartModal() {
+            document.getElementById('cartModal').style.display = 'block';
+            renderCart();
+        }
+
+        function closeCartModal() {
+            document.getElementById('cartModal').style.display = 'none';
+        }
+
+        // Fecha ao clicar fora
+        window.onclick = function(event) {
+            const modal = document.getElementById('cartModal');
+            if (event.target == modal) {
+                closeCartModal();
+            }
+        }
+
+        /* --- FUNÇÕES DO CARRINHO --- */
+        function addToCart(buttonElement) {
+            // 1. Identificar o Card
+            const card = buttonElement.closest('.card');
+            const productName = card.dataset.productName;
+            
+            // 2. Identificar a opção de preço selecionada
+            const selectedOption = card.querySelector('.price-item.active');
+
+            if (!selectedOption) {
+                alert("Por favor, selecione a quantidade (50 ou 100 un.) antes de adicionar!");
+                return;
+            }
+
+            // 3. Pegar dados
+            const qtd = parseInt(selectedOption.dataset.qtd);
+            const price = parseFloat(selectedOption.dataset.price);
+
+            // 4. Adicionar ao Array
+            const item = {
+                id: Date.now(), // ID único
+                name: productName,
+                quantity: qtd,
+                price: price
+            };
+
+            cart.push(item);
+            
+            // 5. Feedback visual e abrir modal
+            renderCart();
+            openCartModal();
+        }
+
+        function removeItem(id) {
+            const index = cart.findIndex(item => item.id === id);
+            if (index > -1) {
+                cart.splice(index, 1);
+            }
+            renderCart();
+        }
+
+        function renderCart() {
+            const cartContainer = document.getElementById('cart-items');
+            const totalElement = document.getElementById('cart-total');
+            const countBadge = document.getElementById('cart-count');
+            const btnFinish = document.getElementById('btn-finish-order');
+            
+            // Atualizar contador no header
+            countBadge.innerText = cart.length;
+            countBadge.style.display = cart.length > 0 ? 'block' : 'none';
+
+            // Se vazio
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p class="empty-cart-message">Seu carrinho está vazio.</p>';
+                totalElement.innerText = "Total: R$ 0,00";
+                btnFinish.disabled = true;
+                return;
+            }
+
+            // Renderizar Lista
+            let html = '';
+            let total = 0;
+
+            cart.forEach(item => {
+                total += item.price;
+                html += `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <strong>${item.name}</strong>
+                            <small>${item.quantity} unidades</small>
+                        </div>
+                        <div style="display:flex; align-items:center;">
+                            <span class="item-price">R$ ${item.price.toFixed(2).replace('.', ',')}</span>
+                            <i class="fas fa-trash item-remove" onclick="removeItem(${item.id})" title="Remover"></i>
+                        </div>
+                    </div>
+                `;
+            });
+
+            cartContainer.innerHTML = html;
+            totalElement.innerHTML = `Total: R$ ${total.toFixed(2).replace('.', ',')}`;
+            btnFinish.disabled = false;
+        }
+
+        function finishOrder() {
+            if (cart.length === 0) return;
+
+            let message = "Olá Suh! 👋\nGostaria de fazer o seguinte pedido:\n\n";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                message += `*${index + 1}. ${item.name}*\n   (${item.quantity} un.) - R$ ${item.price.toFixed(2).replace('.', ',')}\n`;
+            });
+
+            message += `\n💰 *VALOR TOTAL: R$ ${total.toFixed(2).replace('.', ',')}*\n`;
+            message += "\nAguardo a confirmação da disponibilidade e taxa de entrega!";
+
+            const url = `https://wa.me/${telefoneWhatsApp}?text=${encodeURIComponent(message)}`;
+            window.open(url, '_blank');
+        }
+
+        /* --- INICIALIZAÇÃO --- */
+        document.addEventListener('DOMContentLoaded', () => {
+            // Adicionar lógica de seleção nos botões de preço
+            const priceItems = document.querySelectorAll('.price-item');
+            
+            priceItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // Remover 'active' dos irmãos
+                    const parent = this.closest('.price-box');
+                    parent.querySelectorAll('.price-item').forEach(sibling => {
+                        sibling.classList.remove('active');
+                    });
+                    // Adicionar 'active' ao clicado
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
