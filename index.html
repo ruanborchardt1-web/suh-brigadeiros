@@ -85,7 +85,7 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             nav ul { display: none; } 
             .logo { font-size: 1.8rem; }
         }
@@ -232,7 +232,61 @@
 
         .btn-buy:hover { background-color: var(--primary-color); color: #fff; }
 
-        /* --- 6. CARRINHO MODAL --- */
+        /* --- 6. SEÇÃO SOBRE NÓS (NOVO) --- */
+        .about-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 50px;
+            background-color: var(--card-bg);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            max-width: 1000px;
+            margin: 0 auto;
+            border: 1px solid #eee;
+        }
+
+        .about-img {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .about-img img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 10px 10px 0px var(--bg-color), 0 10px 20px rgba(0,0,0,0.1);
+            transition: var(--transition);
+        }
+        .about-img img:hover { transform: scale(1.02); }
+
+        .about-text {
+            flex: 1.2;
+            text-align: left;
+        }
+
+        .about-text h3 {
+            font-family: var(--font-title);
+            font-size: 2.8rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--text-color);
+        }
+
+        @media (max-width: 800px) {
+            .about-container { flex-direction: column; padding: 30px 20px; text-align: center; }
+            .about-text { text-align: center; }
+            .about-img { margin-bottom: 30px; width: 100%; max-width: 300px; }
+        }
+
+
+        /* --- 7. CARRINHO MODAL --- */
         .modal {
             display: none; 
             position: fixed;
@@ -353,7 +407,7 @@
 
         .empty-cart-message { text-align: center; color: #777; padding: 30px; font-style: italic; }
 
-        /* --- 7. FOOTER --- */
+        /* --- 8. FOOTER --- */
         footer {
             background-color: var(--primary-color);
             color: #fff;
@@ -369,7 +423,7 @@
         footer p { font-size: 1.1rem; opacity: 0.9; }
         footer strong { color: var(--gold); }
 
-        /* --- 8. WHATSAPP FLUTUANTE --- */
+        /* --- 9. WHATSAPP FLUTUANTE --- */
         .whatsapp-float {
             position: fixed;
             width: 60px; height: 60px;
@@ -396,6 +450,7 @@
                 <li><a href="#tradicionais">Tradicionais</a></li>
                 <li><a href="#gourmet">Gourmet</a></li>
                 <li><a href="#novos">Novos Sabores</a></li>
+                <li><a href="#sobre">Sobre a Suh</a></li>
                 <li><a href="#contato">Contato</a></li>
             </ul>
         </nav>
@@ -684,6 +739,22 @@
         </div>
     </section>
 
+    <h2 id="sobre" class="category-title">Sobre a Suh</h2>
+    <section>
+        <div class="about-container">
+            <div class="about-img">
+                <img src="" alt="Suh, proprietária da Brigadeiros Caseiros">
+            </div>
+            <div class="about-text">
+                <h3>Mais que um doce,um gesto de carinho!</h3>
+                <p>Olá! Muito prazer, eu sou a Suelen Moreira Luz.</p>
+                <p>Aqui em Cachoeira do Sul, minha jornada sempre foi guiada por uma missão: cuidar de pessoas. Sou Técnica em Enfermagem e estudante de Psicologia, profissões que me ensinaram a importância da atenção, do detalhe e da sensibilidade humana.
+E foi com essa mesma dedicação que me encontrei na confeitaria. Percebi que um brigadeiro não é apenas sobremesa; é um momento de pausa, um presente, um abraço em forma de doce.
+Hoje, divido minha rotina entre os estudos da mente, o cuidado com a saúde e a arte de preparar doces artesanais. Cada brigadeiro que sai da minha cozinha leva um pouco dessa minha essência: feito com o rigor técnico, mas finalizado com todo o coração.</p>
+                <p>Seja bem-vindo(a) ao nosso mundo doce! </p>
+            </div>
+        </div>
+    </section>
     <footer id="contato">
         <div class="social-links">
             <a href="https://instagram.com/suelenmoreiraluz" target="_blank"><i class="fab fa-instagram"></i></a>
